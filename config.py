@@ -22,7 +22,7 @@ ACCELERATION_THRESHOLD = 0.01
 # ==============================
 # Initial geometry
 # ==============================
-INITIAL_OFFSET_X = 50.0
+INITIAL_OFFSET_X = 10.0
 
 # ==============================
 # Simulation parameters
@@ -30,7 +30,7 @@ INITIAL_OFFSET_X = 50.0
 # of comma separated values
 # ==============================
 VELOCITIES = [
-    30
+    30,60
 ]
 
 IMPACT_PARAMETERS = [

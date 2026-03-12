@@ -1,71 +1,70 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # ============================================
-# ElectronScatter Python environment setup
-# Rebuilds the virtual environment from scratch
-# version: 3.0
+# ElectronScatter Run Script
+# version 4.0
 # ============================================
 
 set -e
 
-echo ""
-echo "======================================"
-echo "ElectronScatter Python Environment Setup"
-echo "======================================"
-echo ""
+PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Move to the directory containing this script
+cd "$PROJECT_DIR"
 
-cd "$(dirname "$0")"
+echo
+echo "========================================"
+echo "ElectronScatter Runner"
+echo "========================================"
+echo
 
-echo "Working directory:"
-pwd
-echo ""
+# ------------------------------------------------
+# Ensure virtual environment exists
+# ------------------------------------------------
 
-# Remove existing virtual environment
-
-if [ -d "venv" ]; then
-echo "Removing existing virtual environment..."
-rm -rf venv
-echo "Old venv removed."
-echo ""
+if [ ! -d "venv" ]; then
+echo "Virtual environment not found."
+echo "Running environment setup..."
+echo
+./env_setup_python.sh
 fi
 
-# Create a new virtual environment
-
-echo "Creating new virtual environment..."
-python3 -m venv venv
-echo "Virtual environment created."
-echo ""
-
-# Activate the virtual environment
+# ------------------------------------------------
+# Activate virtual environment
+# ------------------------------------------------
 
 echo "Activating virtual environment..."
 source venv/bin/activate
 
-# Verify correct python
+# ------------------------------------------------
+# Verify correct Python is being used
+# ------------------------------------------------
+
+PYTHON_PATH=$(which python)
+
+if [[ "$PYTHON_PATH" != *"/venv/bin/python"* ]]; then
+echo "ERROR: venv activation failed."
+echo "Python being used:"
+echo "$PYTHON_PATH"
+exit 1
+fi
 
 echo "Using Python:"
-which python
-echo ""
+echo "$PYTHON_PATH"
+echo
 
-# Upgrade pip inside the venv
+# ------------------------------------------------
+# Optional quick environment check
+# ------------------------------------------------
 
-echo "Upgrading pip..."
-python -m pip install --upgrade pip
-echo ""
+echo "Verifying environment..."
+./env_check.sh quick
 
-# Install required packages
+echo
+echo "Running ElectronScatter simulation..."
+echo
 
-echo "Installing required packages..."
-pip install numpy matplotlib
-echo ""
+python main.py
 
-echo "======================================"
-echo "Environment setup complete."
-echo ""
-echo "To activate the environment later:"
-echo "    source venv/bin/activate"
-echo ""
-echo "To run the simulation:"
-echo "    python main.py"
-echo "======================================"
+echo
+echo "Simulation finished."
+echo
