@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 
 echo
 echo "========================================"
-echo "ElectronScatter Runner"
+echo "ElectronScatter Runner" version 3.0
 echo "========================================"
 echo
 

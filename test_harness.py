@@ -2,6 +2,7 @@
 python3 test_harness.py
 Verification test harness for
 Relativistic Two-Electron Scattering Simulator
+Version: 3.0
 """
 
 import numpy as np

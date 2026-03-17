@@ -14,7 +14,7 @@ def main():
 
             pos_R, pos_M = simulation.run(v, impact)
 
-            label = f"v={v}%  b={impact}"
+            label = f"v={v}%c  b={impact}"
 
             plotting.plot_trajectory(pos_R, pos_M, label)
 
