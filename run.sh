@@ -14,4 +14,5 @@ python3 env_setup.py
 
 source venv/bin/activate
 
+echo "Run Electron Scatter Simulation"
 python main.py

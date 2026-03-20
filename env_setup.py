@@ -4,6 +4,7 @@ import subprocess
 import sys
 from pathlib import Path
 import venv
+import config
 
 PROJECT_DIR = Path(__file__).resolve().parent
 VENV_DIR = PROJECT_DIR / "venv"
@@ -64,6 +65,11 @@ def run_gui_test(py):
 
 
 def main():
+
+    if not config.ENABLE_ENV_SETUP:
+        print("Environment setup disabled by config.ENABLE_ENV_SETUP")
+        return
+
     ensure_venv()
 
     py = str(venv_python())

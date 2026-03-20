@@ -2,8 +2,18 @@
 Configuration for Electron Scatter Simulation
 Version: 3.0
 """
+# ==============================
+# Environment setup control
+# ==============================
+# If False, env_setup.py will skip creating the venv
+# and installing dependencies.
+ENABLE_ENV_SETUP = False
 
+# ==============================
+# Upper limit for initial velocity of electron M as a percentage of C
+# ==============================
 MAX_SPEED_PERCENT = 80
+
 # ==============================
 # Physical constants
 # ==============================
@@ -16,13 +26,14 @@ K_COULOMB = 1.0
 # Numerical integration
 # ==============================
 DT = 0.01
-MIN_STEPS = 100
+MIN_STEPS = 250
 ACCELERATION_THRESHOLD = 0.01
 
 # ==============================
 # Initial geometry
 # ==============================
-INITIAL_OFFSET_X = 10.0
+# Initial separation of electron M from R along x-axis
+INITIAL_OFFSET_X = 50.0
 
 # ==============================
 # Simulation parameters
@@ -30,11 +41,11 @@ INITIAL_OFFSET_X = 10.0
 # of comma separated values
 # ==============================
 VELOCITIES = [
-    30,60
+    30
 ]
 
 IMPACT_PARAMETERS = [
-    5
+    5,25
 ]
 
 # ==============================
